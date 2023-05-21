@@ -51,7 +51,6 @@ module.exports = {
 
     getAllTickets:async (req, res) => {
         try {
-            console.log("*>>>>>>>>>>>>>>>>>>>>>>>>>",req.body);
             let {ticketId}=req.body
         
             if(!validUrl.isValid(ticketId)){
@@ -65,12 +64,10 @@ module.exports = {
 
                // Fetch the total tickets for the given ticketId
             const totalTickets = await ticketModel.find({ ticketId: ticketId }).exec();
-            //console.log(totalTickets,">>>>>>>>>>>>>>>>")
-            const totalTicketArray = totalTickets[0].tickets; // Assuming the array of tickets is stored in the 'tickets' property
-
+           
+            const totalTicketArray = totalTickets[0].tickets;
             const totalPages = Math.ceil(totalTicketArray.length / ticketsPerPage);
             const currentPageTickets = totalTicketArray.slice(skip, skip + ticketsPerPage);
-            console.log(currentPageTickets.length,"**********")
             const downloadedTickets = {
                 tickets: currentPageTickets,
                 currentPage: parseInt(page),
