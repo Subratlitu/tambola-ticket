@@ -13,12 +13,6 @@ const isValidPassword=function(password){
     return (password.length>=5 && password.length<=15)
 }
 
-const isNumber=function(str){
-    return (/^\d+$/.test(str));
-}
-const isArray=function(arr){
-    return Array.isArray(arr)
-}
 
 function generateRandomCode() {
   const timestamp = Date.now().toString(36);
@@ -85,8 +79,6 @@ module.exports={
 isValid,
 isValidEmail,
 isValidPassword,
-isNumber,
-isArray,
 generateTicket,
 generateRandomCode
 }
